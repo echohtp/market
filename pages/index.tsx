@@ -44,7 +44,9 @@ const Home: NextPage = () => {
           )}
         </div>
           */}
-          <Masonry columns={{xs: 1, sm:2, lg:4}} spacing={2}>
+          {/* Masonry uses flex instead of grid so I'm copying the header width + 100% from tailwind to emulate it and preserve spacing */}
+          <div className="max-w-7xl w-full">
+          <Masonry columns={{xs: 1, sm:2, md: 3, lg:4}} spacing={2}>
             {mintsOnSale.length > 0 && mintsOnSale.sort((a, b) => 0.5 - Math.random()).map((mint) =>
               <Link href={`edition/${mint.mint}`} passHref>
                 <a className="mintOnSale">
@@ -53,6 +55,7 @@ const Home: NextPage = () => {
               </Link>
             )}
           </Masonry>
+          </div>
       </main>
     </div>
   )
