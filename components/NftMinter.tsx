@@ -290,12 +290,20 @@ export default function NftMinter() {
 
 
                             try {
+
+                                // mint the nft
                                 const { nft } = await metaplex.nfts().create({
                                     name: nftName,
                                     sellerFeeBasisPoints: royaltyPercent * 100,
                                     uri: `https://ipfs.io/ipfs/${cid}`
                                 }).run()
 
+
+                                // update the UA to the server wallet, this lets us print editions and do stuff with the NFT
+                                // ideally, the server signs a NFT mint TX and the user sends it, this brings it down to 1 user TX, 
+                                // and minimizes any "fix the UA on this NFT" issues that will arrise if the 2nd tx doesnt go out.
+                                // that will be V2
+                                
                                 await metaplex.nfts().update({
                                     nftOrSft: nft,
                                     newUpdateAuthority: new PublicKey(process.env.NEXT_PUBLIC_SERVER_WALLET!)
@@ -304,6 +312,7 @@ export default function NftMinter() {
                                 // add the nft mint to the creators mint array
                                 fetch('../api/mint', {
                                     method: "POST",
+                                    // headers: 'Content-Type: application/json',
                                     body: JSON.stringify({wallet: wallet.publicKey?.toBase58(), mint: nft.address.toBase58()})
                                 })
                             } catch {
