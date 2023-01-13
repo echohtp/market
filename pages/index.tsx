@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 import styles from '@/styles/Home.module.css'
 import EditionCard from '@/components/EditionCard'
 import Link from 'next/link'
+import Masonry from '@mui/lab/Masonry'
 
 const Home: NextPage = () => {
   const [mintsOnSale, setMintsOnSale] = useState<any[]>([])
@@ -33,7 +34,7 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main className={styles.main}>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {/*<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {mintsOnSale.length > 0 && mintsOnSale.sort((a, b) => 0.5 - Math.random()).map((mint) =>
             <Link href={`edition/${mint.mint}`} passHref>
               <a>
@@ -42,6 +43,19 @@ const Home: NextPage = () => {
             </Link>
           )}
         </div>
+          */}
+          {/* Masonry uses flex instead of grid so I'm copying the header width + 100% from tailwind to emulate it and preserve spacing */}
+          <div className="max-w-7xl w-full">
+          <Masonry columns={{xs: 1, sm:2, md: 3, lg:4}} spacing={2}>
+            {mintsOnSale.length > 0 && mintsOnSale.sort((a, b) => 0.5 - Math.random()).map((mint) =>
+              <Link href={`edition/${mint.mint}`} passHref>
+                <a className="mintOnSale">
+                <EditionCard edition={mint.mint} creator={mint.creator} />
+                </a>
+              </Link>
+            )}
+          </Masonry>
+          </div>
       </main>
     </div>
   )

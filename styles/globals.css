@@ -26,3 +26,8 @@
 .wallet-adapter-button-trigger:focus {
 outline: none !important;
 }
+
+.mintOnSale{
+  margin-bottom: 1.5rem;
+}
+

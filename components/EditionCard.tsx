@@ -41,9 +41,27 @@ const EditionCard = ({ creator, edition }: EditionCardProps) => {
             <span>{nft?.json?.name}</span>
           
         </div>
+        <div className="mintOnSale__text">
         <p className="text-gray-700 text-base">
-          {nft?.json?.description}
+        {nft?.json?.description && nft?.json?.description?.length >= 200 && (
+          <>{nft?.json?.description.substring(0,200)}...</>
+        )}
+        {nft?.json?.description && nft?.json?.description?.length < 200 && (
+          <>{nft?.json?.description}</>
+        )}
         </p>
+        {/* Started doing an expand more button before realizing the entire card is a link */}
+        {/*
+        {nft?.json?.description && nft?.json?.description?.length > 150 && (
+          <div className="mintOnSale__text--expand">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 960 560" enable-background="new 0 0 960 560">
+          <g id="Rounded_Rectangle_33_copy_4_1_">
+            <path d="M480,344.181L268.869,131.889c-15.756-15.859-41.3-15.859-57.054,0c-15.754,15.857-15.754,41.57,0,57.431l237.632,238.937   c8.395,8.451,19.562,12.254,30.553,11.698c10.993,0.556,22.159-3.247,30.555-11.698l237.631-238.937   c15.756-15.86,15.756-41.571,0-57.431s-41.299-15.859-57.051,0L480,344.181z"/>
+          </g>
+          </svg>
+          </div>
+        )} */}
+        </div>
       </div>
       <div className="px-6 pt-4 pb-2">
         {nft?.json?.attributes?.map((e) => <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{e.trait_type}\\{e.value}</span>)}
