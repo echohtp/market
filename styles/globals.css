@@ -30,6 +30,7 @@ outline: none !important;
 .mintOnSale{
   display:flex;
   justify-content: center;
+  margin-bottom: 1.5rem;
 }
 .mintOnSale__text{
   position: relative;

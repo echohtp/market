@@ -44,7 +44,7 @@ const Home: NextPage = () => {
           )}
         </div>
           */}
-          <Masonry columns={{xs: 1, sm:2, md:4}} spacing={4}>
+          <Masonry columns={{xs: 1, sm:2, lg:4}} spacing={2}>
             {mintsOnSale.length > 0 && mintsOnSale.sort((a, b) => 0.5 - Math.random()).map((mint) =>
               <Link href={`edition/${mint.mint}`} passHref>
                 <a className="mintOnSale">
