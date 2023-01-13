@@ -26,3 +26,17 @@
 .wallet-adapter-button-trigger:focus {
 outline: none !important;
 }
+
+.mintOnSale{
+  display:flex;
+  justify-content: center;
+}
+.mintOnSale__text{
+  position: relative;
+}
+.mintOnSale__text--expand{
+  position:absolute;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+}
